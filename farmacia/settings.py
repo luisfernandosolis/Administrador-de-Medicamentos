@@ -134,7 +134,5 @@ LOGIN_REDIRECT_URL='medicamentos:list_medications'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
-# cuando queremos acceder al perfil de usuario si acceder a nuestra cuenta, 
-#esta variable permitirá que mientras iniciemos sesion permaneszamos en ese perfil
-# cono facebook
+
 LOGIN_URL='user:login'

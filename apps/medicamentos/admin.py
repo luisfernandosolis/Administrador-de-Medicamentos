@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Medication,typeOfMedication,typeOfPresentation,VentasMes,TipoVenta
+
 # Register your models here.
 class MedicationRegister(admin.ModelAdmin):
 	class Meta:
@@ -24,9 +25,3 @@ class TipoVentaRegister(admin.ModelAdmin):
 		model=TipoVenta
 admin.site.register(TipoVenta,TipoVentaRegister)
 
-'''
-class InformedeConsumoRegister(admin.ModelAdmin):
-	class Meta:
-		model=InformedeConsumo
-admin.site.register(InformedeConsumo,InformedeConsumoRegister)
-'''

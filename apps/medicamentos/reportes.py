@@ -70,7 +70,7 @@ class ReporteMedicamentos(object):
             ('VALIGN',(0,0),(-1,-1),'MIDDLE')])
 
         t = Table(data,repeatRows=1)
-        #agregamos repeat rows para qu el encabezado se repita en cada salto de pagina
+        #agregamos repeat rows para que el encabezado se repita la primera fila de 'data' en cada salto de pagina
         t.setStyle(style)
         self.story.append(t)
 

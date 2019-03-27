@@ -15,9 +15,8 @@ class typeOfPresentation(models.Model):
 
 #registro de medicamentos
 class Medication(models.Model):
-	#informacion particular
+	#informacion de Medicamento
 	code=models.CharField(max_length=100,blank=True,null=True)
-	#code=models.IntegerField()
 	typeMedication = models.ManyToManyField(typeOfMedication,null=True,blank=True)
 	name=models.CharField(max_length=100)
 	typePresentation = models.ManyToManyField(typeOfPresentation,null=True,blank=True)

@@ -65,6 +65,8 @@ def reporte(request):
 	user_filter = UserFilter(request.GET, queryset=user_list)
 
 	return render(request, 'reporte.html', {'filter': user_filter})
+	
+#vender Medicamento
 @login_required # se necesita estar logueado para acceder a esta vista
 def vender(request,pk):
 	bandera=False
@@ -118,6 +120,9 @@ def vender(request,pk):
 		'bandera':bandera
 	}
 	return render(request,'formvender.html',context)
+
+
+#recargar Medicamento
 @login_required # se necesita estar logueado para acceder a esta vista
 def ingreso(request,pk):
 	medicamentos=Medication.objects.get(id=pk)
@@ -137,6 +142,8 @@ def ingreso(request,pk):
 		'form':form
 	}
 	return render(request,'formingresar.html',context)
+
+#añadir nuevo  Medicamento
 @login_required # se necesita estar logueado para acceder a esta vista
 def AñadirMedicamento(request):
 	if request.method=="POST":
@@ -157,7 +164,6 @@ def AñadirMedicamento(request):
 #generar reporte pdf
 @login_required # se necesita estar logueado para acceder a esta vista
 
-
 def reporte_Medications(request):
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachment; filename="medicamentos.pdf"'
@@ -165,52 +171,4 @@ def reporte_Medications(request):
 	response.write(r.run())
 	return response
 
-    
-'''
-    buf=BytesIO()
-    #cmontamos un canbas en el buffer de datos
-    c=canvas.Canvas(buf,pagesize=landscape(A4))
-    saldo_final='201902'
-    #HEADER
-    c.setLineWidth(0.1)
-    c.setFont('Helvetica',9)
-    c.drawString(15,570,'Red:')
-    c.drawString(90,570,'HUAMANGA:')
-    c.drawString(15,560,'MicroRed:')
-    c.drawString(90,560,'OCROS:')
-    c.drawString(15,550,'Establecimiento:')
-    c.drawString(90,550,'PS. CHUMBES:')
-    c.drawString(180,550,'Saldos Finales: {}'.format(saldo_final))
-
-    data = [["Código","Tipo","Nombre","Presentación","Precio",'saldo','ingreso','V.Ext','Valor',"SIS",'valor','int.Sanit','EXO','Transf.','Total sal.','Saldo disp.','Fec. Exp.']] \
-            +[[x.code,x.typeMedication.all()[0],x.name, x.typePresentation.all()[0], x.price,x.balance,x.ingreso,x.ventaexterna,x.valorE,x.ventasis,x.valorS,x.int_sanitaria,x.exo,x.transferencia,x.totalsalida,x.saldoDisponible,x.fecha_expedicion] 
-                for x in Medication.objects.all().order_by('name')]
-
-    style = TableStyle([
-        ('GRID', (0,0), (-1,-1), 0.25, colors.black),
-        ('ALIGN',(0,0),(-1,-1),'CENTER'),
-        ('FONTSIZE', (0, 0), (-1, -1), 8),
-        ('VALIGN',(0,0),(-1,-1),'MIDDLE')])
-
-    #escribimos la tabla
-    width,height=landscape(A4)
-    table=Table(data)
-    table.setStyle(style)
-    table.wrapOn(c,width,height)
-    table.drawOn(c,2,800-len(data))
-    c.showPage()
-    c.save()
-
-
-
-
-
-
-
-
-    pdf=buf.getvalue()
-    buf.close()
-    response.write(pdf)
-'''
- #direccion del logo que esta en /media/sismed.jpg
- 
+  

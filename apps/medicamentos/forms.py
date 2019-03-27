@@ -60,21 +60,6 @@ class NewMedication(forms.ModelForm):
 			'balance':'Cantidad inicial en farmacia (saldo)'
 
 		}
-		''''
-		no s el campo para el selector mencionado(sol: cambiar de campo)
-
-
-		si sale el valor de 'ingrese valores a la lista' es por que typemedication y el otro 
-		selector son de tipo manytomanyfield y no reconocen este.. para solucionar borrar widgets y 
-		agregar la funcion de abajo
-		widgets={
-			'code':forms.TextInput(attrs={'class':'form-control'}),
-			'typeMedication':forms.Select(attrs={'class':'form-control'}),
-			'name':forms.TextInput(attrs={'class':'form-control'}),
-			'typePresentation':forms.Select(attrs={'class':'form-control'}),
-			'price':forms.TextInput(attrs={'class':'form-control'}),
-		}
-		'''
 
 	def __init__(self, *args, **kwargs):
 	        super(NewMedication, self).__init__(*args, **kwargs)
@@ -105,8 +90,8 @@ class formOperacionVender(forms.ModelForm):
 			
 		}
 
-		#definimos su campo 'HTML' de cada label
-		#attrs: los atributos de cada etiqueta
+		#definimos el campo 'HTML' de cada label
+		#attrs: los atributos de cada campo
 		widgets={
 			'code':forms.TextInput(attrs={'class':'form-control'}),
 			'name':forms.TextInput(attrs={'class':'form-control'}),
