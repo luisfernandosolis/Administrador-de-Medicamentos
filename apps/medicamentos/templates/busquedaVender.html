@@ -1,0 +1,65 @@
+{% extends 'base/base.html'%}
+
+{% block search %}
+	<form  style="display: flex;flex-direction: row;" method="get">
+      
+      	<input class="form-control mr-sm-2" type="search" placeholder="buscar medicamento" aria-label="Search"  name="name" id="id_name">
+    	<button class="btn btn-info my-2 my-sm-0" type="submit">Buscar</button>
+  </form>
+  {%endblock%}
+  {% block title %}Vender Medicamento{%endblock%}
+
+{% block content %}
+
+
+
+  <table style="color: black;"class="table table-bordered">
+  	<thead class="thead-dark">
+	<tr>
+	
+		<th>Codigo</th>
+		<th>Tipo</th>
+		<th>Nombre</th>
+		<th>Presentación</th>
+		<th>Precio</th>
+		<th>Cantidad disponible</th>
+		<th>Vender</th>
+	</tr>
+	</thead>
+	{% if filter %}
+	{% for elemento in filter.qs %}
+	<tr>
+		
+		<td>{{elemento.code}}</td>
+		{% for tipo in elemento.typeMedication.all %}
+            <td>{{tipo.name}}</td>
+        {% endfor %}
+        <td>{{elemento.name}}</td>
+        {% for tipo in elemento.typePresentation.all %}
+			<td>{{tipo.name}}</td>
+        {% endfor %}
+		
+		<td>{{elemento.price}}</td>
+		<td>{{elemento.saldoDisponible}}</td>
+		
+		<td>
+		<a href="{%url 'medicamentos:operar' elemento.pk %}" class="btn btn-primary btn-lg" data-toggle='modal'>vender</a>
+		</td>
+	</tr>
+	{% endfor %}
+	{% else%}
+	<h1>no existen medicamentos registradas</h1>
+	{% endif%}
+</table>
+
+
+
+{% endblock%}
+
+{% block js %}
+
+{%endblock%}
+
+
+
+

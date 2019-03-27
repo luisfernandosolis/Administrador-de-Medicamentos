@@ -1,0 +1,80 @@
+{% extends 'base/base.html'%}
+
+{% block search %}
+	<form  style="display: flex;flex-direction: row;" method="GET">
+      
+      	<input class="form-control mr-sm-2" type="search" placeholder="buscar medicamento" aria-label="Search"  name="name" id="id_name">
+    	<button class="btn btn-info my-2 my-sm-0" type="submit">Buscar</button>
+  </form>
+  {%endblock%}
+{% block content %}
+
+<div class="table-responsive"> <!--pone un sccrollbar para expandir la tabla-->
+<table  id="productSizes" class="table table-light  table-bordered table-hover"><!-- el id juntos con el div-->
+	<thead class="thead-dark">
+	<tr>
+		<th style="width:8px">Código</th>
+		<th style="width:3px">Tipo</th>
+		<th style="width:2px">Nombre</th>
+		<th style="width:3px">Presentación</th>
+		<th style="width:5px">Precio</th>
+		<th style="width:5px">Saldo</th>
+		<th style="width:5px">Ingreso</th>
+		<th style="width:5px">Venta_Externa</th>
+		<th style="width:5px">Valor</th>
+		<th style="width:5px">SIS</th>
+		<th style="width:5px">Valor</th>
+		<th style="width:5px">int.sanit</th>
+		<th style="width:5px">EXO</th>
+		<th style="width:5px">Trans.</th>
+		<th style="width:5px">Total.salida</th>
+		<th style="width:5px">Saldo_disp</th>
+		<th style="width:5px">fecha_expedicion</th>
+
+		
+		
+
+	</tr>
+	</thead>
+	{% if filter %}
+
+	{% for item in filter.qs %}
+
+	<tr>
+			<td>{{ item.code }}</td>
+			{% for tipo in item.typeMedication.all %}
+	            <td>{{tipo.name}}</td>
+	        {% endfor %}
+	        <td>{{item.name}}</td>
+	        {% for presentacion in item.typePresentation.all %}
+				<td>{{presentacion.name}}</td>
+	        {% endfor %}
+			
+			<td>{{item.price}}</td>
+			<td>{{item.balance}}</td>
+
+
+
+			<td>{{item.ingreso}}</td>
+			<td>{{item.ventaexterna}}</td>
+	        <td>{{item.valorE}}</td>
+	        <td>{{item.ventasis}}</td>
+			<td>{{item.valorS}}</td>
+			<td>{{item.int_sanitaria}}</td>
+			<td>{{item.exo}}</td>
+			<td>{{item.transferencia}}</td>
+			<td>{{item.totalsalida}}</td>
+			<td>{{item.saldoDisponible}}</td>
+			<td>{{item.fecha_expedicion}}</td>
+
+
+	</tr>
+	{% endfor %}
+	{% else%}
+	<p>no existen medicamentos registradas</p>
+	{% endif%}
+</table>
+</div>
+</div>
+</div>
+	{% endblock%}

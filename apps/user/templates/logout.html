@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{%load staticfiles%}
+{% load crispy_forms_tags %}
+ {% block css%}
+      <link rel='stylesheet' href="{%static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+
+      <link rel="stylesheet" href="{%static 'css/style.css'%}">
+{%endblock%}
+{% block content %}
+
+    <div class="wrapper" >
+    <form style='font-size: 20px; text-align: center;' class="form-signin" method="POST"> 
+    {% csrf_token %}      
+      <p style='font-size: 20px; text-align: center;' class="form-signin-heading big">Inicie Sesion para Adinistrar el sistema</p>
+      {{ form|crispy }}
+      </label>
+      <hr>
+      <a class=" btn btn-primary ml-2" href="{% url 'user:login' %}">Iniciar sesión</a>  
+    </form>
+  </div>
+
+{% endblock content %}

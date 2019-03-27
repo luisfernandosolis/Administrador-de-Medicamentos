@@ -1,0 +1,16 @@
+{% extends 'base/base.html '%}
+{% load crispy_forms_tags %}
+{% block content%}
+{% if bandera %}
+		<p> {{mensaje}}</p>
+{% endif %}
+<div class="container">
+	<form method="POST">
+		{% csrf_token %}
+		{{form|crispy}}
+		<input class="btn btn-primary mb-2"  type="submit" value="Guardar">
+		<br/>
+	</form>
+
+</div>
+{% endblock%}
